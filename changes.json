@@ -3,12 +3,12 @@
     {
       "action": "add_a_song_to_playlist",
       "playlist_id": "1",
-      "song_id": "99"
+      "song_id": "40"
     },
     {
       "action": "add_new_playlist_to_user",
       "user_id": "5",
-      "playlist_id": "18",
+      "playlist_id": "4",
       "song_id": "5"
     },
     {

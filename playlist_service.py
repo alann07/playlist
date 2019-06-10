@@ -36,7 +36,7 @@ class PlaylistService:
 
         changes = changes_json['changes']
         if changes is None or len(changes) == 0:
-            error_list.append({ServiceError.NO_ACTION_DEFINED_ERR: ServiceError[ServiceError.NO_ACTION_DEFINED_ERR]})
+            error_list.append({ServiceError.NO_ACTION_DEFINED_ERR: ServiceError.Errors[ServiceError.NO_ACTION_DEFINED_ERR]})
         else:
             for change in changes:
                 action = change['action']
@@ -55,13 +55,13 @@ class PlaylistService:
 
         return error_list
 
-    def add_song_to_list(self, playlist_id, song_id, songs, play_list, error_list):
+    def add_song_to_list(self, playlist_id, song_id, songs, play_lists, error_list):
         """
         Add a song to an existing playlist.
         :param playlist_id: playlist id to add the song
         :param song_id: song id to be added into the playlist
         :param songs: object contains all the songs
-        :param play_list: play list which contains all the lists.
+        :param play_lists: play list which contains all the lists.
         :param error_list: error list which contains all the errors processing from the current action
         :return: void
         """
@@ -71,7 +71,7 @@ class PlaylistService:
             return
 
         song = self.get_song_by_id(song_id, songs)
-        playlist = self.get_playlist_by_id(playlist_id, play_list)
+        playlist = self.get_playlist_by_id(playlist_id, play_lists)
         if song and playlist and song_id not in playlist['song_ids']:
             playlist['song_ids'].append(song_id)
         else:
@@ -81,7 +81,7 @@ class PlaylistService:
             if playlist is None:
                 error_list.append({ServiceError.NO_PLAYLIST_DEFINED_ERR: ServiceError.Errors[
                     ServiceError.NO_PLAYLIST_DEFINED_ERR].format(playlist_id)})
-            if song_id in playlist['song_ids']:
+            if playlist and song_id in playlist['song_ids']:
                 error_list.append({ServiceError.SONG_EXIST_ERR: ServiceError.Errors[
                     ServiceError.SONG_EXIST_ERR].format(song_id)})
         return

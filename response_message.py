@@ -14,7 +14,7 @@ class ServiceError:
     Errors = {NO_ACTION_DEFINED_ERR: 'No action defined in change file',
               NO_USER_DEFINED_ERR: 'User {0} does not exist',
               NO_SONG_DEFINED_ERR: 'Song {0} does not exist',
-              NO_PLAYLIST_DEFINED_ERR: 'Playlist {0} does not exist',
+              NO_PLAYLIST_DEFINED_ERR: 'Playlist {0} does not exist. Not removing it.',
               SONG_LIST_EMPTY_ERR: 'Song list is empty',
               PLAYLIST_EMPTY_ERR: 'Playlists are empty',
               PLAYLIST_EXIST_ERR: 'Playlist {0} already exists. Not adding it.',
