@@ -63,8 +63,14 @@ def main():
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     input_json, changes_json, output_file = parse_args()
     playlist_service = PlaylistService()
-    playlist_service.apply_changes(input_json, changes_json, output_file)
-    logger.info("Playlist Processing Complete")
+    error_list = playlist_service.apply_changes(input_json, changes_json, output_file)
+    if len(error_list) == 0:
+        logger.info("Playlist Processing Successful")
+    else:
+        logger.info("Playlist processing has errors:")
+        for error in error_list:
+            for k, v in error.items():
+                logger.info(k + ": " + v)
 
 
 if __name__ == '__main__':

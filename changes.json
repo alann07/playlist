@@ -3,7 +3,7 @@
     {
       "action": "add_a_song_to_playlist",
       "playlist_id": "1",
-      "song_id": "5"
+      "song_id": "99"
     },
     {
       "action": "add_new_playlist_to_user",
