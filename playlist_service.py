@@ -126,6 +126,10 @@ class PlaylistService:
         :param error_list: error list which contains all the errors processing from the current action
         :return: void
         """
+        if play_lists is None or len(play_lists) == 0:
+            error_list.append({ServiceError.PLAYLIST_EMPTY_ERR: ServiceError.Errors[
+                ServiceError.PLAYLIST_EMPTY_ERR]})
+            return
         logger.info('remove list ' + playlist_id)
         for i in range(len(play_lists)):
             if play_lists[i]['id'] == playlist_id:
