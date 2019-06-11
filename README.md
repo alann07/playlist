@@ -111,7 +111,7 @@ SONG_EXIST_ERR: 'Song {0} already exists in the playlist. No action taken.'
 
 When the playlist file or changes file becomes very large, it is a big performance hit to read and write them from/to files. Here are a few thoughts.
 
-### Host the process as a service and playlist in a DB
+### Host the process as a service and store playlists in a DB
 
 If the file, like mixtape becomes larger than the memory limit, we may put it into a database, and retrieve it using paging approach.
 
@@ -119,7 +119,7 @@ If the app is used frequently, we may run it as a service, in order to save the 
 
 When using the service, we can further apply the following
 
-* Use cache to hold the playlist
+* Use cache to hold the playlist. May apply LRU to put active playlist to the front.
 * Use distributed DB to store playlist based on the cluster of, for example, user name, or playlist id, so that the processing can be done parallely.
 
 If we have clustered user info, such playlist can be processed concurrently with seperate instances of playlist processor.
